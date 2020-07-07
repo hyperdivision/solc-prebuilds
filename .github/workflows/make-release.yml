@@ -1,8 +1,11 @@
+name: Build binaries and create release
+
 on:
   push:
-    tags:
-      - 'v*'
-name: Build binaries and create release
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
 jobs:
   build:
     strategy:
