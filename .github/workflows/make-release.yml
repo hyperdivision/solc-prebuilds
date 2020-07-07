@@ -32,4 +32,6 @@ jobs:
         run: ./scripts/build.sh
       - name: Build solc
         if: matrix.os == 'windows-latest'
-        run: cmake --build . --config Release
+        run: |
+          cmake .
+          cmake --build . --config Release
