@@ -26,7 +26,6 @@ jobs:
       - name: Install deps
         if: matrix.os == 'windows-latest'
         run: scripts\install_deps.bat
-      - name: Setup build
       - name: Build solc
         if: matrix.os != 'windows-latest'
         run: ./scripts/build.sh
