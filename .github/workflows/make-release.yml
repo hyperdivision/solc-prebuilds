@@ -21,8 +21,8 @@ jobs:
           ref: 'v0.5.12'
           submodules: 'recursive'
       - name: Install deps
-        if: matrix.os != 'windows'
+        if: matrix.os != 'windows-latest'
         run: ./scripts/install_deps.sh
       - name: Install deps
-        if: matrix.os == 'windows'
+        if: matrix.os == 'windows-latest'
         run: scripts\install_deps.bat
