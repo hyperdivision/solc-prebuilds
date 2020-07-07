@@ -26,3 +26,9 @@ jobs:
       - name: Install deps
         if: matrix.os == 'windows-latest'
         run: scripts\install_deps.bat
+      - name: Build solc
+        if: matrix.os != 'windows-latest'
+        run: ./scripts/build.sh
+      - name: Build solc
+        if: matrix.os == 'windows-latest'
+        run: cmake --build . --config Release
