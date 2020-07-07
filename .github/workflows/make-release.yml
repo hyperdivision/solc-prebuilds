@@ -14,8 +14,15 @@ jobs:
     runs-on: ${{ matrix.os }}
     name: Build
     steps:
-      - uses: actions/checkout@v2.1.0
-      - name: Download test dependencies
-        uses: teddyking/dependency-action@master
+      - name: Clone solidity
+        uses: actions/checkout@v2.1.0
         with:
-          deps: https://github.com/ethereum/solidity/releases/download/v0.6.8/solidity_0.6.8.tar.gz
+          repository: 'https://github.com/ethereum/solidity.git'
+          ref: 'v0.5.12'
+          submodules: 'recursive'
+      - name: Install deps
+        if: matrix.os != 'windows'
+        run: ./scripts/install_deps.sh
+      - name: Install deps
+        if: matrix.os == 'windows'
+        run: scripts\install_deps.bat
