@@ -10,7 +10,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows-latest, macos-latest, ubuntu-16.04]
+        os: [windows-latest, macos-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
     name: Build
     steps:
@@ -26,6 +26,7 @@ jobs:
       - name: Install deps
         if: matrix.os == 'windows-latest'
         run: scripts\install_deps.bat
+      - name: Setup build
       - name: Build solc
         if: matrix.os != 'windows-latest'
         run: ./scripts/build.sh
