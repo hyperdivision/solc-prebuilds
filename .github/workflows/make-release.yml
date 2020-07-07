@@ -1,0 +1,18 @@
+on:
+  push:
+    tags:
+      - 'v*'
+name: Build binaries and create release
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-16.04]
+    runs-on: ${{ matrix.os }}
+    name: Build
+    steps:
+      - uses: actions/checkout@v2.1.0
+      - name: Download test dependencies
+        uses: teddyking/dependency-action@master
+        with:
+          deps: https://github.com/ethereum/solidity/releases/download/v0.6.8/solidity_0.6.8.tar.gz
